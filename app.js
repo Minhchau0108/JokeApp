@@ -18,23 +18,24 @@ custom.addEventListener("click", (e)=>{
 const getJoke = async () => {
     let result = document.getElementById('result');
     result.innerHTML = "";
-    let checkboxes = document.getElementsByName('category');
+    let checkboxes = [...document.getElementsByName('category')].filter((checkbox)=>checkbox.checked);
     let category = "";
     if(any.checked){
         category = "Any";
     }
     if(custom.checked){
-        checkboxes.forEach((checkbox) => {
-        if(checkbox.checked == true){
-            category += checkbox.value + ",";
-        }
-        });
-        if(category != ""){
-            category = category.substring(0, category.length - 1);
-        }
-        else{
-            category = "Programming";
-        }  
+        // checkboxes.forEach((checkbox) => {
+        // if(checkbox.checked){
+        //     category += checkbox.value + ",";
+        // }
+        // });
+        // if(category != ""){
+        //     category = category.substring(0, category.length - 1);
+        // }
+        // else{
+        //     category = "Programming";
+        // }  
+        category = checkboxes.map((c)=>c.value).join();
     }
 
     console.log(category);
